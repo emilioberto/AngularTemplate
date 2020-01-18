@@ -43,7 +43,7 @@
         ]
       }
     ],
-    "no-consecutive-blank-lines": false,
+    "no-consecutive-blank-lines": true,
     "no-console": [
       true,
       "debug",
@@ -66,7 +66,35 @@
       "as-needed"
     ],
     "object-literal-sort-keys": false,
-    "ordered-imports": false,
+    "ordered-imports": [
+      true,
+      {
+        "module-source-path": "full",
+        "grouped-imports": true,
+        "groups": [
+          {
+            "name": "angular",
+            "match": "^@angular.*",
+            "order": 1
+          },
+          {
+            "name": "internal modules",
+            "match": "^@app.*",
+            "order": 3
+          },
+          {
+            "name": "relative dir",
+            "match": "^[.].*",
+            "order": 4
+          },
+          {
+            "name": "node_modules",
+            "match": ".*",
+            "order": 2
+          }
+        ]
+      }
+    ],
     "quotemark": [
       true,
       "single"
@@ -83,7 +111,16 @@
     "template-banana-in-box": true,
     "template-no-negated-async": true,
     "use-lifecycle-interface": true,
-    "use-pipe-transform-interface": true
+    "use-pipe-transform-interface": true,
+    "no-magic-numbers": true,
+    "typedef": [
+      true,
+      "arrow-call-signature",
+      "array-destructuring",
+      "call-signature",
+      "object-destructuring",
+      "parameter"
+    ]
   },
   "rulesDirectory": [
     "codelyzer"
