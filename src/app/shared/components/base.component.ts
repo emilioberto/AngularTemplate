@@ -2,7 +2,7 @@ import { OnDestroy, OnInit } from '@angular/core';
 
 import { Subscription } from 'rxjs';
 
-import '@app/shared/utils/utils';
+import '@app/core/utils/utils';
 
 export abstract class BaseComponent implements OnInit, OnDestroy {
 
