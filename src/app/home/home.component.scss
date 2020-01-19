@@ -1,0 +1,22 @@
+@import 'src/styles/_variables';
+
+$toolbar-height: 64px;
+
+mat-toolbar {
+  padding: 0;
+
+  .toolbar-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: $padding-md;
+    width: 100%;
+  }
+}
+
+router-outlet {
+  height: calc(100% - #{$toolbar-height});
+  position: absolute;
+  top: $toolbar-height;
+  width: 100%;
+}
