@@ -4,10 +4,11 @@ import { NgModule } from '@angular/core';
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule
+    CommonModule,
   ],
   exports: [
     CommonModule
-  ]
+  ],
+
 })
 export class CoreModule { }
