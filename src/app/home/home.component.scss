@@ -9,14 +9,33 @@ mat-toolbar {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: $padding-md;
+    align-items: center;
+    padding: 0 $padding-md;
     width: 100%;
+
+    .brand, .menu {
+      display: flex;
+      align-items: center;
+    }
   }
 }
 
-router-outlet {
+.sidenav-container {
   height: calc(100% - #{$toolbar-height});
+  background: green;
   position: absolute;
   top: $toolbar-height;
-  width: 100%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  .sidenav {
+    min-width: 200px;
+    max-width: 200px;
+  }
+
+  .sidenav-content {
+    height: 100%;
+    width: 100%;
+  }
 }

@@ -2,6 +2,9 @@
   <div class="toolbar-container">
     <!-- Brand -->
     <div class="brand">
+      <button mat-button>
+        <mat-icon aria-hidden="false" (click)="sidenav.toggle()">menu</mat-icon>
+      </button>
       <span>My Application</span>
     </div>
 
@@ -25,4 +28,12 @@
   </div>
 </mat-toolbar>
 
-<router-outlet></router-outlet>
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sidenav mode="over" class="sidenav">
+    Bondola e pan biot
+  </mat-sidenav>
+
+  <mat-sidenav-content class="sidenav-content">
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
