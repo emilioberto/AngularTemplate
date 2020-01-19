@@ -21,17 +21,32 @@ mat-toolbar {
 }
 
 .sidenav-container {
-  height: calc(100% - #{$toolbar-height});
-  background: green;
-  position: absolute;
-  top: $toolbar-height;
   bottom: 0;
+  height: calc(100% - #{$toolbar-height});
   left: 0;
+  position: absolute;
   right: 0;
+  top: $toolbar-height;
 
   .sidenav {
     min-width: 200px;
     max-width: 200px;
+
+    .sidenav-content {
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: $padding-md;
+
+      .sidemenu {
+        flex: 1;
+      }
+      .copyright {
+        flex: 0;
+        text-align: center;
+      }
+    }
   }
 
   .sidenav-content {
