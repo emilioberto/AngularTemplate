@@ -1,17 +1,21 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { TranslocoModule } from '@ngneat/transloco';
-
-import { CoreModule } from '@app/core/core.module';
 
 @NgModule({
   declarations: [],
   imports: [
-    CoreModule,
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     TranslocoModule
   ],
   exports: [
-    CoreModule,
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     TranslocoModule
   ]
 })

@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -10,7 +12,9 @@ const MaterialModules = [
   MatButtonModule,
   MatMenuModule,
   MatIconModule,
-  MatSidenavModule
+  MatSidenavModule,
+  MatFormFieldModule,
+  MatInputModule
 ];
 
 @NgModule({

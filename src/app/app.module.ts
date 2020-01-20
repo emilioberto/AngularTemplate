@@ -1,13 +1,17 @@
-import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule, Routes } from '@angular/router';
 
-import { TRANSLOCO_CONFIG, TranslocoConfig, TranslocoModule } from '@ngneat/transloco';
-
-import { AppRoutingModule } from '@app/app-routing.module';
 import { AppComponent } from '@app/app.component';
-import { httpLoader } from '@app/transloco/http-loader';
+import { CoreModule } from '@app/core/core.module';
+import { States } from '@app/core/services/navigation.service';
+
+const routes: Routes = [
+  { path: '', redirectTo: States.Login, pathMatch: 'full' },
+  { path: States.Login, loadChildren: () => import('app/login/login.module').then(m => m.LoginModule) },
+  { path: States.Home, loadChildren: () => import('app/home/home.module').then(m => m.HomeModule) },
+  { path: '**', loadChildren: () => import('app/not-found/not-found.module').then(m => m.NotFoundModule) },
+];
 
 @NgModule({
   declarations: [
@@ -15,23 +19,10 @@ import { httpLoader } from '@app/transloco/http-loader';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    TranslocoModule,
+    CoreModule,
+    RouterModule.forRoot(routes, { enableTracing: true })
   ],
-  providers: [
-    httpLoader,
-    {
-      provide: TRANSLOCO_CONFIG,
-      useValue: {
-        availableLangs: ['en', 'it'],
-        reRenderOnLangChange: true,
-        fallbackLang: 'it',
-        defaultLang: 'en'
-      } as TranslocoConfig
-    }
-  ],
+  exports: [RouterModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

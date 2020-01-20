@@ -1,6 +1,6 @@
 import { OnDestroy, OnInit } from '@angular/core';
 
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 import '@app/core/utils/utils';
 
@@ -10,6 +10,8 @@ export abstract class BaseComponent implements OnInit, OnDestroy {
 
   protected subscription = new Subscription();
 
+  public constructor() { }
+
   public ngOnInit(): void {
     this.onInit();
   }
@@ -17,6 +19,15 @@ export abstract class BaseComponent implements OnInit, OnDestroy {
   public ngOnDestroy(): void {
     this.onDestroy();
     this.subscription.unsubscribe();
+  }
+
+  public handleSubscription(observable: Observable<any>): void {
+    this.subscription.add(
+      observable.subscribe(
+        res => console.log(res),
+        err => console.error(err)
+      )
+    );
   }
 
   protected abstract onInit(): void;
