@@ -1,7 +1,11 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+import { take, tap } from 'rxjs/operators';
+
 import { AuthService } from '@app/core/services/auth.service';
+import { NavigationService } from '@app/core/services/navigation.service';
+import { AuthQuery } from '@app/core/state-management/auth.query';
 import { BaseComponent } from '@app/shared/components/base.component';
 import { CredentialsData } from '@app/shared/models/authentication';
 

@@ -6,6 +6,7 @@ import { tap } from 'rxjs/operators';
 import { BaseHttpService } from '@app/core/services/base-http.service';
 import { BaseService } from '@app/core/services/base.service';
 import { NavigationService } from '@app/core/services/navigation.service';
+import { SettingsService } from '@app/core/services/settings.service';
 import { AuthStore } from '@app/core/state-management/auth.store';
 import { CredentialsData, TokenResponse } from '@app/shared/models/authentication';
 
@@ -15,7 +16,7 @@ export class AuthService extends BaseService {
   constructor(
     protected http: BaseHttpService,
     private authStore: AuthStore,
-    private navigationSvc: NavigationService,
+    private navigationSvc: NavigationService
   ) {
     super(http, 'auth');
   }
@@ -24,7 +25,7 @@ export class AuthService extends BaseService {
     return this.http.post<TokenResponse>(`${this.apiPath}/login`, credentials)
       .pipe(
         tap(res => {
-          this.authStore.update(res);
+          this.authStore.authenticate(res);
           this.navigationSvc.home();
         })
       );

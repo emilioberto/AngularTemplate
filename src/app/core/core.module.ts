@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TRANSLOCO_CONFIG, TranslocoConfig, TranslocoModule } from '@ngneat/transloco';
 
 import { AuthGuard } from '@app/core/guards/auth.guard';
+import { LoggedInGuard } from '@app/core/guards/logged-in.guard';
 import { AuthService } from '@app/core/services/auth.service';
 import { BaseHttpService } from '@app/core/services/base-http.service';
 import { LocalStorageService } from '@app/core/services/local-storage.service';
@@ -30,6 +31,7 @@ import { httpLoader } from '@app/core/transloco/http-loader';
     AuthStore,
     BaseHttpService,
     LocalStorageService,
+    LoggedInGuard,
     NavigationService,
     SettingsService,
     httpLoader,
