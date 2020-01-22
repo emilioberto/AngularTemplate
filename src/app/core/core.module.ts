@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -10,18 +11,23 @@ import { BaseHttpService } from '@app/core/services/base-http.service';
 import { LocalStorageService } from '@app/core/services/local-storage.service';
 import { NavigationService } from '@app/core/services/navigation.service';
 import { SettingsService } from '@app/core/services/settings.service';
+import { AuthQuery } from '@app/core/state-management/auth.query';
+import { AuthStore } from '@app/core/state-management/auth.store';
 import { httpLoader } from '@app/core/transloco/http-loader';
 
 @NgModule({
   declarations: [],
   imports: [
+    CommonModule,
     HttpClientModule,
     BrowserAnimationsModule,
     TranslocoModule,
   ],
   providers: [
     AuthGuard,
+    AuthQuery,
     AuthService,
+    AuthStore,
     BaseHttpService,
     LocalStorageService,
     NavigationService,
@@ -39,10 +45,9 @@ import { httpLoader } from '@app/core/transloco/http-loader';
   ],
 })
 export class CoreModule {
-  public constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
-
+  constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
     if (parentModule) {
-      throw new Error('CoreModule has already been loaded. Import Core modules in the AppModule only.');
+      throw new Error('CoreModule has already been loaded. You should only import Core modules in the AppModule only.');
     }
   }
 }

@@ -10,17 +10,17 @@ import { SettingsService } from '@app/core/services/settings.service';
 @Injectable()
 export class BaseHttpService {
 
-  public readonly baseUrl = environment.baseUrl;
-  public readonly baseApiUrl = `${this.baseUrl}api/`;
+  readonly baseUrl = environment.baseUrl;
+  readonly baseApiUrl = `${this.baseUrl}api/`;
 
-  public readonly unauthorizedEvt = new EventEmitter<void>();
+  readonly unauthorizedEvt = new EventEmitter<void>();
 
-  public constructor(
+  constructor(
     protected http: HttpClient,
     private settingsSvc: SettingsService
   ) { }
 
-  public get<T>(
+  get<T>(
     url: string,
     queryParams: HttpParams = null,
     auth: boolean = true,
@@ -35,7 +35,7 @@ export class BaseHttpService {
     return action().pipe<T>(catchError(err => this.handleError(err, () => action())));
   }
 
-  public post<T>(
+  post<T>(
     url: string,
     data: any,
     queryParams: HttpParams = null,
@@ -48,7 +48,7 @@ export class BaseHttpService {
     return action().pipe<T>(catchError(err => this.handleError(err, () => action())));
   }
 
-  public delete(
+  delete(
     url: string,
     queryParams: HttpParams = null,
     auth: boolean = true,
@@ -60,7 +60,7 @@ export class BaseHttpService {
     return action().pipe<void>(catchError(err => this.handleError(err, () => action())));
   }
 
-  public patch(
+  patch(
     url: string,
     data: any, // TODO
     entityId: number,
@@ -77,7 +77,7 @@ export class BaseHttpService {
     return action().pipe(catchError(err => this.handleError(err, () => action())));
   }
 
-  public put<T>(
+  put<T>(
     url: string,
     data: any,
     queryParams: HttpParams = null,
@@ -90,7 +90,7 @@ export class BaseHttpService {
     return action().pipe<T>(catchError(err => this.handleError(err, () => action())));
   }
 
-  public getForDownload(
+  getForDownload(
     url: string,
     queryParams: HttpParams = null,
     auth: boolean = true,
@@ -121,7 +121,7 @@ export class BaseHttpService {
       );
   }
 
-  public refreshToken(): Observable<boolean> {
+  refreshToken(): Observable<boolean> {
     return of(true);
     // const ops: HttpOptions = {
     //   headers: {
@@ -168,13 +168,13 @@ export class BaseHttpService {
     return url;
   }
 
-  public buildQueryParams(...items: { key: string, value: string }[]): HttpParams {
+  buildQueryParams(...items: { key: string, value: string }[]): HttpParams {
     let params = new HttpParams();
     items.forEach(i => params = params.append(i.key, i.value));
     return params;
   }
 
-  public buildAuthorizationHeader(): string {
+  buildAuthorizationHeader(): string {
     return `${this.settingsSvc.tokenType} ${this.settingsSvc.token}`;
   }
 

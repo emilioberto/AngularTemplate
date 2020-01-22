@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class HttpLoader implements TranslocoLoader {
   constructor(private http: HttpClient) { }
 
-  public getTranslation(langPath: string): Observable<Translation> {
+  getTranslation(langPath: string): Observable<Translation> {
     return this.http.get<Translation>(`/assets/i18n/${langPath}.json`);
   }
 }

@@ -10,43 +10,43 @@ export class SettingsService {
   private static readonly tokenTypeKey = 'token_type';
   private static readonly refreshTokenKey = 'refresh_token';
 
-  public constructor(
+  constructor(
     private localStorageSvc: LocalStorageService
   ) { }
 
-  public get language(): string {
+  get language(): string {
     return this.localStorageSvc.get(SettingsService.langKey);
   }
 
-  public set language(language: string) {
+  set language(language: string) {
     this.localStorageSvc.set(SettingsService.langKey, language);
   }
 
-  public get token(): string {
+  get token(): string {
     return this.localStorageSvc.get(SettingsService.tokenKey);
   }
 
-  public set token(token: string) {
+  set token(token: string) {
     this.localStorageSvc.set(SettingsService.tokenKey, token);
   }
 
-  public get tokenType(): string {
+  get tokenType(): string {
     return this.localStorageSvc.get(SettingsService.tokenTypeKey);
   }
 
-  public set tokenType(tokenType: string) {
+  set tokenType(tokenType: string) {
     this.localStorageSvc.set(SettingsService.tokenTypeKey, tokenType);
   }
 
-  public get refreshToken(): string {
+  get refreshToken(): string {
     return this.localStorageSvc.get(SettingsService.refreshTokenKey);
   }
 
-  public set refreshToken(refreshToken: string) {
+  set refreshToken(refreshToken: string) {
     this.localStorageSvc.set(SettingsService.refreshTokenKey, refreshToken);
   }
 
-  public clear(): void {
+  clear(): void {
     this.localStorageSvc.clear();
   }
 

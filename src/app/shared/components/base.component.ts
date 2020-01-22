@@ -6,22 +6,22 @@ import '@app/core/utils/utils';
 
 export abstract class BaseComponent implements OnInit, OnDestroy {
 
-  public isLoading = false;
+  isLoading = false;
 
   protected subscription = new Subscription();
 
-  public constructor() { }
+  constructor() { }
 
-  public ngOnInit(): void {
+  ngOnInit(): void {
     this.onInit();
   }
 
-  public ngOnDestroy(): void {
+  ngOnDestroy(): void {
     this.onDestroy();
     this.subscription.unsubscribe();
   }
 
-  public handleSubscription(observable: Observable<any>): void {
+  handleSubscription(observable: Observable<any>): void {
     this.subscription.add(
       observable.subscribe(
         res => console.log(res),

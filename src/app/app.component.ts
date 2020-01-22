@@ -9,7 +9,7 @@ import { BaseComponent } from '@app/shared/components/base.component';
 })
 export class AppComponent extends BaseComponent {
 
-  public constructor() {
+  constructor() {
     super();
   }
 

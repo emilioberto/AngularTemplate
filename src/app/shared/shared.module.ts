@@ -4,19 +4,23 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { TranslocoModule } from '@ngneat/transloco';
 
+import { MaterialModule } from '@app/material/material.module';
+
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    TranslocoModule
+    TranslocoModule,
+    MaterialModule
   ],
   exports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    TranslocoModule
+    TranslocoModule,
+    MaterialModule
   ]
 })
 export class SharedModule { }

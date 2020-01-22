@@ -1,30 +1,37 @@
 import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 import { BaseHttpService } from '@app/core/services/base-http.service';
 import { BaseService } from '@app/core/services/base.service';
 import { NavigationService } from '@app/core/services/navigation.service';
-import { SettingsService } from '@app/core/services/settings.service';
+import { AuthStore } from '@app/core/state-management/auth.store';
 import { CredentialsData, TokenResponse } from '@app/shared/models/authentication';
 
 @Injectable()
 export class AuthService extends BaseService {
 
-  public constructor(
+  constructor(
     protected http: BaseHttpService,
-    private settingsSvc: SettingsService,
-    private navigationSvc: NavigationService
+    private authStore: AuthStore,
+    private navigationSvc: NavigationService,
   ) {
     super(http, 'auth');
   }
 
-  public authenticate(credentials: CredentialsData): Observable<TokenResponse> {
-    return this.http.post<TokenResponse>(`${this.apiPath}/login`, credentials);
+  authenticate(credentials: CredentialsData): Observable<TokenResponse> {
+    return this.http.post<TokenResponse>(`${this.apiPath}/login`, credentials)
+      .pipe(
+        tap(res => {
+          this.authStore.update(res);
+          this.navigationSvc.home();
+        })
+      );
   }
 
-  public logout(): void {
-    this.settingsSvc.clear();
+  logout(): void {
+    this.authStore.logout();
     this.navigationSvc.login();
   }
 }

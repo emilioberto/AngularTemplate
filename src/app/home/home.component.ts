@@ -12,7 +12,7 @@ import { BaseComponent } from '@app/shared/components/base.component';
 })
 export class HomeComponent extends BaseComponent {
 
-  public constructor(
+  constructor(
     private settingsSvc: SettingsService,
     private authSvc: AuthService,
   ) {
@@ -23,7 +23,7 @@ export class HomeComponent extends BaseComponent {
 
   protected onDestroy(): void { }
 
-  public logout(): void {
+  logout(): void {
     this.authSvc.logout();
   }
 }

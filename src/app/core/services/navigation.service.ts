@@ -9,15 +9,15 @@ export enum States {
 @Injectable()
 export class NavigationService {
 
-  public constructor(
+  constructor(
     private router: Router
   ) { }
 
-  public home(): Promise<boolean> {
+  home(): Promise<boolean> {
     return this.router.navigate([States.Home]);
   }
 
-  public login(): Promise<boolean> {
+  login(): Promise<boolean> {
     return this.router.navigate([States.Login]);
   }
 
