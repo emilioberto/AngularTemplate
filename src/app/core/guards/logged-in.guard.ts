@@ -4,7 +4,7 @@ import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot } from '@angul
 import { Observable, of } from 'rxjs';
 import { switchMap, take } from 'rxjs/operators';
 
-import { AuthQuery } from '@app/core/state-management/auth.query';
+import { AuthQuery } from '@app/core/state/auth.query';
 
 @Injectable()
 export class LoggedInGuard implements CanActivate {
@@ -21,7 +21,7 @@ export class LoggedInGuard implements CanActivate {
     return this.ensureIsNotAuthenticated();
   }
 
-  ensureIsNotAuthenticated(): Observable<boolean> { // TODO: Check authentication with server
+  ensureIsNotAuthenticated(): Observable<boolean> {
     return this.authQuery.isLoggedIn$
       .pipe(
         take(1),

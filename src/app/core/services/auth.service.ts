@@ -6,9 +6,9 @@ import { tap } from 'rxjs/operators';
 import { BaseHttpService } from '@app/core/services/base-http.service';
 import { BaseService } from '@app/core/services/base.service';
 import { NavigationService } from '@app/core/services/navigation.service';
-import { SettingsService } from '@app/core/services/settings.service';
-import { AuthStore } from '@app/core/state-management/auth.store';
+import { AuthStore } from '@app/core/state/auth.store';
 import { CredentialsData, TokenResponse } from '@app/shared/models/authentication';
+import { handleLoading } from '@app/shared/rxjs/handle-loading';
 
 @Injectable()
 export class AuthService extends BaseService {
@@ -25,9 +25,10 @@ export class AuthService extends BaseService {
     return this.http.post<TokenResponse>(`${this.apiPath}/login`, credentials)
       .pipe(
         tap(res => {
-          this.authStore.authenticate(res);
+          this.authStore.login(res);
           this.navigationSvc.home();
-        })
+        }),
+        handleLoading(this.authStore)
       );
   }
 

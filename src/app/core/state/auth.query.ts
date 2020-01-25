@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { Query, toBoolean } from '@datorama/akita';
 
-import { AuthState, AuthStore } from '@app/core/state-management/auth.store';
+import { AuthState, AuthStore } from '@app/core/state/auth.store';
 
 @Injectable()
 export class AuthQuery extends Query<AuthState> {

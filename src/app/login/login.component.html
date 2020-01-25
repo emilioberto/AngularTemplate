@@ -1,14 +1,19 @@
 <div class="login-container">
-  <form [formGroup]="formGroup" (ngSubmit)="authenticate()">
-    <mat-form-field class="w-100">
-      <input matInput placeholder="Email" type="text" formControlName="email">
-    </mat-form-field>
+  <mat-progress-spinner *ngIf="isLoading$ | async; else authForm" color="accent" mode="indeterminate">
+  </mat-progress-spinner>
 
-    <mat-form-field class="w-100">
-      <input matInput placeholder="Password" type="password" formControlName="password">
-    </mat-form-field>
+  <ng-template #authForm>
+    <form [formGroup]="formGroup" (ngSubmit)="authenticate()">
+      <mat-form-field class="w-100">
+        <input matInput placeholder="Email" type="text" formControlName="email">
+      </mat-form-field>
 
-    <button mat-raised-button class="w-100" color="primary" transloco="login" type="submit"
-      [disabled]="formGroup.invalid"></button>
-  </form>
+      <mat-form-field class="w-100">
+        <input matInput placeholder="Password" type="password" formControlName="password">
+      </mat-form-field>
+
+      <button mat-raised-button class="w-100" color="primary" transloco="login" type="submit"
+        [disabled]="formGroup.invalid"></button>
+    </form>
+  </ng-template>
 </div>

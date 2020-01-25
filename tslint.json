@@ -33,8 +33,7 @@
     ],
     "member-access": [
       true,
-      "no-public",
-      "check-accessor"
+      "no-public"
     ],
     "member-ordering": [
       true,

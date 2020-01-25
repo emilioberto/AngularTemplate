@@ -6,7 +6,7 @@ import '@app/core/utils/utils';
 
 export abstract class BaseComponent implements OnInit, OnDestroy {
 
-  isLoading = false;
+  isLoading$: Observable<boolean>;
 
   protected subscription = new Subscription();
 

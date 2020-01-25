@@ -5,7 +5,7 @@ import { Observable, of } from 'rxjs';
 import { switchMap, take } from 'rxjs/operators';
 
 import { AuthService } from '@app/core/services/auth.service';
-import { AuthQuery } from '@app/core/state-management/auth.query';
+import { AuthQuery } from '@app/core/state/auth.query';
 
 @Injectable()
 export class AuthGuard implements CanActivate {

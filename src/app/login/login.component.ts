@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { take, tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 import { AuthService } from '@app/core/services/auth.service';
-import { NavigationService } from '@app/core/services/navigation.service';
-import { AuthQuery } from '@app/core/state-management/auth.query';
+import { AuthQuery } from '@app/core/state/auth.query';
 import { BaseComponent } from '@app/shared/components/base.component';
 import { CredentialsData } from '@app/shared/models/authentication';
 
@@ -19,12 +18,14 @@ export class LoginComponent extends BaseComponent {
 
   constructor(
     private fb: FormBuilder,
-    private authSvc: AuthService
+    private authSvc: AuthService,
+    private authQuery: AuthQuery
   ) {
     super();
   }
 
   protected onInit(): void {
+    this.isLoading$ = this.authQuery.selectLoading();
     this.buildForm();
   }
 
